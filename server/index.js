@@ -4,9 +4,9 @@ var serve = new server({ port: 5001 })
 serve.on('connection', function(wsos){
     wsos.on('message', function(message) {
         console.log('Received:', message);
-
-        if(message === 'Hello') {
-            wsos.send('Hey there from the server!');
+        wsos.send('Message repeated from the server: ' + message);
+        if(message === 'hello') {
+            wsos.send('Server says hello too!');
         }
     });
 });
