@@ -11,7 +11,7 @@ serve.on('connection', function(wsos){
     });
 
     wsos.on('close', function() {
-        console.log('I lost a client');
+        console.log('A client disconnected');
     });
 
 
