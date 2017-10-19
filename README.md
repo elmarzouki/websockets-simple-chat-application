@@ -1,5 +1,5 @@
 # websockets-simple-chat-application
-simple chat application using websockets.
+simple chat application using websockets. <br/>
 backend implemented using node.js 
 ```
 cd server
