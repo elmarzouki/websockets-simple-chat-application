@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WebSockets</title>
+</head>
+<body>
+    <button>Send Hello</button>
+    <script>
+        var ws = new WebSocket('ws://localhost:5001');
+        ws.onopen = function(event) {
+            // alert('Socket connected successfully!');
+            setTimeout(function() {
+                ws.send('Wassup mate?');
+            }, 1000);
+        };
+        ws.onmessage = function (event) {
+            console.log(event);
+        }
+
+        document.querySelector('button').onclick = function() {
+            ws.send('Hello');
+        }
+    </script>
+</body>
+</html>
