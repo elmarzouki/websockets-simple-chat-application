@@ -9,4 +9,12 @@ serve.on('connection', function(wsos){
             wsos.send('Server says hello too!');
         }
     });
+
+    wsos.on('close', function() {
+        console.log('I lost a client');
+    });
+
+
+    console.log('one more client connected!');
+
 });
