@@ -3,11 +3,24 @@ var serve = new server({ port: 5001 })
 
 serve.on('connection', function(wsos){
     wsos.on('message', function(message) {
-        console.log('Received:', message);
-        wsos.send('Message repeated from the server: ' + message);
-        if(message === 'hello') {
-            wsos.send('Server says hello too!');
+
+        message = JSON.parse(message);
+
+        if(message.type == 'username') {
+            wsos.username = message.username;
+            return;
         }
+
+        console.log('Received:', message);
+
+        serve.clients.forEach(function(client) {
+            if(client != wsos) { client.send(JSON.stringify({
+                username: wsos.username,
+                chatMessage: message.chatMessage
+            })); }
+        });
+
+        // wsos.send('Message repeated from the server: ' + message);
     });
 
     wsos.on('close', function() {
